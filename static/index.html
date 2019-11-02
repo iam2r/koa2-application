@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background: #ff0;
+            box-sizing: border-box;
+            border: 12px solid transparent;
+            transition: border 1s;
+        }
+
+        .box1:hover {
+            border: 12px solid red;
+            transition: border 1s;
+        }
+    </style>
+</head>
+<div class="box1">
+    <div class="content"></div>
+</div>
+
+<body>
+    <script>
+
+        window.console.log(calcTimeDif)
+
+
+
+
+        function calcTimeDif(st, et) {
+            return et.getTime() - st.getTime();
+        }
+
+
+        var calcTimeDif = function (st, et) {
+            return et.getTime() - st.getTime();
+        };
+
+
+        function formatCountTimeDown(difTime) {
+
+            //将值转成最小单位，记为value
+            var difTimeToSec = difTime / 1000;
+            //求各个单位转换成最小单位后的值
+            var toSec = [3600 * 24, 3600, 60, 1];
+            var toSecObj = {//key value
+                day: 3600 * 24,
+                hour: 3600,
+                min: 60,
+                sec: 1
+            }
+
+            sec = Math.floor(difTimeToSec % toSecObj.min / toSecObj.sec)
+            min = Math.floor(difTimeToSec % toSecObj.hour / toSecObj.min)
+            hour = Math.floor(difTimeToSec % toSecObj.day / toSecObj.hour)
+            day = Math.floor(difTimeToSec / toSecObj.day)
+            var result = []
+
+            for (var i = 0; i < toSec.length; i++) {
+                var one = toSec[i];
+                var prevOne = toSec[i - 1]
+                i == 0 ? result.push(Math.floor(difTimeToSec / one)) : result.push(Math.floor(difTimeToSec % prevOne / one))
+            }
+            return `${addZero(result[0])}日${addZero(result[1])}时${addZero(result[2])}分${addZero(result[3])}秒`
+        }
+
+
+        var arr = [5, 4, 65];
+
+
+
+
+        Array.prototype.max = function () {
+            console.log('dddd')
+        }
+
+        [1, 2].max()
+
+
+        let addZero = num => {
+            return num < 10 ? "0" + num : num
+        }
+
+        // let countTimeDown = et => {
+        //     this.timer = setInterval(() => {
+        //         let difTime = calcTimeDif(new Date(), et);
+        //         console.log(formatCountTimeDown(difTime))
+        //     }, 1000)
+        // }
+
+        function countTimeDown(et) {
+            var timer = setInterval(function () {
+
+                var difTime = calcTimeDif(new Date(), et);
+                if (difTime <= 0) {
+                    clearInterval(difTime);
+                } else {
+                    console.log(formatCountTimeDown(difTime))
+                }
+
+            }, 1000)
+
+        }
+
+
+        // countTimeDown(new Date('2018-08-04 13:21:30'))
+
+
+        for (var i = 1; i < 10; i++) {
+            console.log(i)
+            for (let j = 0; j < 5; j++) {
+                console.log("2 " + i)
+            }
+        }
+    // console.log(i);
+
+
+    // for (var i=0)
+
+
+// 一句话 
+// 当前要得到的单位 = 总数转成最小单位的值%当前单位的上一个单位（比当前大）转换成最小单位的值/当前单位转换成    最小单位的值
+
+
+// 这里是日 时 分 秒
+// 最小单位是秒
+
+
+// 公式：总秒%上一单位秒/当前秒
+
+// 求日：总秒%月秒/日秒
+// 求时：总秒%日秒/时秒
+// 求分：总秒%时秒/分秒
+// 求秒：总秒%分秒/秒秒
+
+
+//特殊
+//求最大时（日）   总秒%月秒=总秒 恒成立
+//求最小时（秒）   秒秒 = 1 恒成立
+//故
+// 求日：总秒/日秒
+// 求秒：总秒%分秒
+
+//但 公式：总秒%上一单位秒/当前秒  恒成立  记得他就行
+
+    </script>
+</body>
+
+</html>

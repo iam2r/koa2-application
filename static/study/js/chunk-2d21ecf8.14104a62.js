@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["chunk-2d21ecf8"],{d6c3:function(c,n,o){"use strict";o.r(n),n.default="Hello from lazy"}}]);
